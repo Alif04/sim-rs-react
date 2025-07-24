@@ -12,7 +12,7 @@ const LoginManager = () => {
   
   useEffect(() => {
     if (!loading && user?.roles) {
-      if (user.roles.includes("manager")) {
+      if (user.roles.some(role => role.name === "manager")) {
         navigate("/admin/overview");
       }
     }
