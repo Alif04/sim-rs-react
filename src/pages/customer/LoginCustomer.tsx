@@ -11,7 +11,7 @@ const LoginCustomer = () => {
 
   useEffect(() => {
     if (!loading && user?.roles) {
-      if (user.roles.some(role => role.name === "customer")) {
+      if (user.roles.includes("customer")) {
         navigate("/customer/discover");
       }
     }
@@ -23,10 +23,9 @@ const LoginCustomer = () => {
 
     try {
       await login(email, password);
-      if (user && user.roles?.some(role => role.name === "customer")) {
+      if (user && user.roles?.includes("customer")) {
         navigate("/customer/discover");
       }
-
     } catch (error) {
       setError(error instanceof Error ? error.message : "Login failed");
     }

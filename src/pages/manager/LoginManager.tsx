@@ -12,7 +12,7 @@ const LoginManager = () => {
   
   useEffect(() => {
     if (!loading && user?.roles) {
-      if (user.roles.some(role => role.name === "manager")) {
+      if (user.roles.includes("manager")) {
         navigate("/admin/overview");
       }
     }
@@ -24,7 +24,7 @@ const LoginManager = () => {
 
     try {
       await login(email, password);
-      if (user && user.roles?.map(role => role.name.toLowerCase()).includes("manager")) {
+      if (user && user.roles?.includes("manager")) {
         navigate("/admin/overview");
       }
     } catch (error) {

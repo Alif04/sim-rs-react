@@ -13,14 +13,14 @@ const ProtectedRoute = ({ children, roles }: ProtectedRouteProps) => {
     if (loading) return;  
     if (!user) {
       navigate("/", { replace: true });
-    } else if (roles && !user.roles?.some((role) => roles.includes(role.name))) {
+    } else if (roles && !user.roles?.some((role) => roles.includes(role))) {
        
       navigate("/unauthorized", { replace: true });
     }
   }, [user, roles, loading, navigate]); 
 
    
-  if (loading || !user || (roles && !user.roles?.some((role) => roles.includes(role.name)))) {
+  if (loading || !user || (roles && !user.roles?.some((role) => roles.includes(role)))) {
     return null;
   }
 
